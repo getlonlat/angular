@@ -1,0 +1,122 @@
+<div class="card">
+  <agm-map
+    [latitude]="start.lat"
+    [longitude]="start.lng"
+    [mapTypeControl]="true"
+    (centerChange)="onCenterChange($event)"
+    [zoom]="zoom">
+    <agm-marker
+      [latitude]="start.lat"
+      [longitude]="start.lng"
+      [markerDraggable]="true"
+      (dragEnd)="onDragEndMarker($event)">
+      <agm-info-window>
+        {{ start.lat }}, {{ start.lng }}
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+
+  <div class="card-body">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-preprend">
+          <div class="input-group-text">
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+
+        <input type="search"
+          [(ngModel)]="query"
+          [ngModelOptions]="{updateOn: 'blur'}"
+          (ngModelChange)="onChangeQuery($event)"
+          placeholder="Type the address to start search"
+          class="form-control">
+
+        <div class="input-group-append">
+          <button type="button" class="btn btn-light" (click)="clearSearch()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <ul *ngIf="places !== null && places.length > 0" class="list-group pb-2">
+      <li class="list-group-item" *ngFor="let place of places" (click)="selectAddress(place)">
+        {{ place.formatted_address }}
+        <span class="float-right text-primary">
+          {{ place.geometry.location.lat }}, {{ place.geometry.location.lng }}
+        </span>
+      </li>
+    </ul>      
+
+    <div class="row">
+      <div class="col-1">
+        <button type="button" class="btn btn-block btn-success" (click)="updatePosition()" title="Update position">
+          <i class="fas fa-location-arrow"></i>
+        </button>
+      </div>
+      <div class="col-1">
+        <button type="button" class="btn btn-block btn-primary" (click)="dropMarker()" title="Drop marker">
+          <i class="fas fa-map-marker-alt"></i>
+        </button>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="lat">
+            <b class="text-danger">Y</b>
+            LATITUDE
+          </label>
+          <div class="input-group">
+            <input id="lat" type="text" readonly class="form-control form-control-sm" [value]="start.lat">
+            <div class="input-group-append">
+              <button type="button" class="btn btn-link btn-sm" clip="{{ start.lat }}"><i class="far fa-clone"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="lng">
+            <b class="text-danger">X</b>
+            LONGITUDE
+          </label>
+          <div class="input-group">
+            <input id="lng" type="text" readonly class="form-control form-control-sm" [value]="start.lng">
+            <div class="input-group-append">
+              <button type="button" class="btn btn-link btn-sm" clip="{{ start.lng }}">
+                <i class="far fa-clone"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="hash">
+            GEOHASH
+          </label>
+          <div class="input-group">
+            <input id="hash" type="text" readonly class="form-control form-control-sm" [value]="hash">
+            <div class="input-group-append">
+              <button type="button" class="btn btn-link btn-sm" clip="{{ hash }}">
+                <i class="far fa-clone"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="whatIsHere">WHAT IS HERE</label>
+      <div class="input-group">
+        <input id="whatIsHere" type="text" readonly class="form-control" [value]="whatIsHere">
+        <div class="input-group-append">
+          <button type="button" class="btn btn-link btn-sm" clip="{{ whatIsHere }}">
+            <i class="far fa-clone"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
