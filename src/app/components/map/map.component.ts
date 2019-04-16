@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AgmMap } from '@agm/core/';
 
 import { GeolocationService } from '../../services/geolocation/geolocation.service';
 import { GeocoderService } from '../../services/geocoder/geocoder.service';
@@ -23,6 +22,7 @@ export class MapComponent implements OnInit {
   query = '';
   whatIsHere = '';
   places: Array<any> = [];
+  showSearch: false;
 
   constructor(
     private geolocation: GeolocationService,

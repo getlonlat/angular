@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class GeocoderService {
@@ -10,6 +11,7 @@ export class GeocoderService {
     const url = `https://maps.googleapis.com/maps/api/geocode/json`;
     const latlng = lat.toString() + ',' + lng.toString();
     const params = new HttpParams()
+      .set('key', environment.GOOGLE_MAPS_API_KEY)
       .set('latlng', latlng)
       .set('sensor', 'false');
 
@@ -25,6 +27,7 @@ export class GeocoderService {
   encode(query: string) {
     const url = `https://maps.googleapis.com/maps/api/geocode/json`;
     const params = new HttpParams()
+      .set('key', environment.GOOGLE_MAPS_API_KEY)
       .set('address', query)
       .set('sensor', 'false');
 
