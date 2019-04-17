@@ -6,10 +6,12 @@ echo "Deploy to gh-pages started...\n";
 set -e;
 
 # build
-yarn ng build --prod --base-href=/angular/;
+yarn ng build --prod --base-href=/;
 
 # navigate into the build output directory
 cd dist;
+
+echo 'angular.getlonlat.top' > CNAME;
 
 git init;
 git add -A;
