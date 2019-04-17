@@ -11,9 +11,6 @@ yarn ng build --prod --base-href=/;
 # navigate into the build output directory
 cd dist;
 
-# deploy to a custom domain
-echo 'angular.getlonlat.top' > CNAME;
-
 git init;
 git add -A;
 git commit -m 'deploy to gh-pages';
