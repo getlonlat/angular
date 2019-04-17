@@ -20,14 +20,14 @@
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <label for="lat">
-            <b class="text-danger">Y</b>
-            LATITUDE
-          </label>
+          <label for="lat">LATITUDE</label>
           <div class="input-group">
-            <input id="lat" type="text" readonly class="form-control form-control-sm" [value]="start.lat">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Y</div>
+            </div>
+            <input id="lat" type="text" readonly class="form-control" [value]="start.lat">
             <div class="input-group-append">
-              <button type="button" class="btn btn-outline-secondary btn-sm" clip="{{ start.lat }}" title="Copy to clipboard">
+              <button type="button" class="btn btn-outline-secondary btn-sm" [clip]="start.lat" title="Copy to clipboard">
                 <i class="far fa-clone"></i>
               </button>
             </div>
@@ -36,14 +36,14 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="lng">
-            <b class="text-danger">X</b>
-            LONGITUDE
-          </label>
+          <label for="lng">LONGITUDE</label>
           <div class="input-group">
-            <input id="lng" type="text" readonly class="form-control form-control-sm" [value]="start.lng">
+            <div class="input-group-prepend">
+              <div class="input-group-text">X</div>
+            </div>
+            <input id="lng" type="text" readonly class="form-control" [value]="start.lng">
             <div class="input-group-append">
-              <button type="button" class="btn btn-outline-secondary btn-sm" clip="{{ start.lng }}">
+              <button type="button" class="btn btn-outline-secondary btn-sm" [clip]="start.lng">
                 <i class="far fa-clone"></i>
               </button>
             </div>
@@ -56,9 +56,9 @@
             GEOHASH
           </label>
           <div class="input-group">
-            <input id="hash" type="text" readonly class="form-control form-control-sm" [value]="hash">
+            <input id="hash" type="text" readonly class="form-control" [value]="hash">
             <div class="input-group-append">
-              <button type="button" class="btn btn-outline-secondary btn-sm" clip="{{ hash }}">
+              <button type="button" class="btn btn-outline-secondary btn-sm" [clip]="hash">
                 <i class="far fa-clone"></i>
               </button>
             </div>
@@ -72,7 +72,7 @@
       <div class="input-group">
         <input id="whatIsHere" type="text" readonly class="form-control" [value]="whatIsHere">
         <div class="input-group-append">
-          <button type="button" class="btn btn-outline-secondary btn-sm" clip="{{ whatIsHere }}">
+          <button type="button" class="btn btn-outline-secondary btn-sm" [clip]="whatIsHere">
             <i class="far fa-clone"></i>
           </button>
         </div>
@@ -81,15 +81,24 @@
   </div>
 
   <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
+    <ul class="nav nav-pills card-header-pills justify-content-center">
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="showSearch = !showSearch">Search Address</a>
+        <a class="nav-link" href="#" (click)="showSearch = !showSearch">
+          <i class="fas fa-search-location"></i>
+          Search Address
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="updatePosition()">Geolocation</a>
+        <a class="nav-link" href="#" (click)="updatePosition()">
+          <i class="fas fa-compass"></i>
+          Geolocation
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="dropMarker()">Drop Marker</a>
+        <a class="nav-link" href="#" (click)="dropMarker()">
+          <i class="fas fa-map-marker-alt"></i>
+          Drop Marker
+        </a>
       </li>
     </ul>
   </div>
@@ -105,16 +114,10 @@
 
         <input type="search"
           [(ngModel)]="query"
-          [ngModelOptions]="{updateOn: 'blur'}"
+          [ngModelOptions]="{updateOn: 'change', debounce: 200}"
           (ngModelChange)="onChangeQuery($event)"
           placeholder="Type the address to start search"
           class="form-control">
-
-        <div class="input-group-append">
-          <button type="button" class="btn btn-outline-secondary" (click)="clearSearch()">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
       </div>
     </div>
 

@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   query = '';
   whatIsHere = '';
   places: Array<any> = [];
-  showSearch: false;
+  showSearch = false;
 
   constructor(
     private geolocation: GeolocationService,
