@@ -27,7 +27,7 @@
             </div>
             <input id="lat" type="text" readonly class="form-control" [value]="start.lat">
             <div class="input-group-append">
-              <button type="button" class="btn btn-outline-secondary btn-sm" [clip]="start.lat" title="Copy to clipboard">
+              <button (click)="showToastr()" type="button" class="btn btn-outline-secondary btn-sm" [clip]="start.lat" title="Copy to clipboard">
                 <i class="far fa-clone"></i>
               </button>
             </div>
@@ -43,7 +43,7 @@
             </div>
             <input id="lng" type="text" readonly class="form-control" [value]="start.lng">
             <div class="input-group-append">
-              <button type="button" class="btn btn-outline-secondary btn-sm" [clip]="start.lng">
+              <button (click)="showToastr()" type="button" class="btn btn-outline-secondary btn-sm" [clip]="start.lng">
                 <i class="far fa-clone"></i>
               </button>
             </div>
@@ -58,7 +58,7 @@
           <div class="input-group">
             <input id="hash" type="text" readonly class="form-control" [value]="hash">
             <div class="input-group-append">
-              <button type="button" class="btn btn-outline-secondary btn-sm" [clip]="hash">
+              <button (click)="showToastr()" type="button" class="btn btn-outline-secondary btn-sm" [clip]="hash">
                 <i class="far fa-clone"></i>
               </button>
             </div>

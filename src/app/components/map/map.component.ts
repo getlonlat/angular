@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GeolocationService } from '../../services/geolocation/geolocation.service';
 import { GeocoderService } from '../../services/geocoder/geocoder.service';
 import { Geohash } from '../../services/geohash/geohash';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-map',
@@ -27,7 +28,8 @@ export class MapComponent implements OnInit {
   constructor(
     private geolocation: GeolocationService,
     private geocoder: GeocoderService,
-    private geohash: Geohash
+    private geohash: Geohash,
+    private toastr: ToastrService
   ) {
   }
 
@@ -108,5 +110,9 @@ export class MapComponent implements OnInit {
         this.whatIsHere = '';
       }
     );
+  }
+
+  showToastr() {
+    this.toastr.success('Copied content');
   }
 }
