@@ -1,4 +1,4 @@
-# getLonLat 2
+# getLonLat Angular
 
 Utility to get Longitude (X-axis) and Latitude (Y-axis) from a place in the map.
 
@@ -6,6 +6,8 @@ Utility to get Longitude (X-axis) and Latitude (Y-axis) from a place in the map.
 ### Powered by
 
 [Angular](https://angular.io)
+&
+[Bootstrap](https://getbootstrap.com/)
 &
 [Google Maps API](https://developers.google.com/maps/)
 

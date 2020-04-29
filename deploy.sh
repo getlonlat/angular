@@ -2,11 +2,23 @@
 
 echo "Deploy to gh-pages started...\n";
 
-ng build --prod --base-href=/app2/;
+# abort on errors
+set -e;
 
-git add dist;
-git commit -m 'deploy gh-pages';
+# build
+yarn ng build --prod --base-href=/;
 
-git subtree push --prefix dist origin gh-pages;
+# navigate into the build output directory
+cd dist;
 
-echo "\nDeploy finished.";
+echo 'angular.getlonlat.top' > CNAME;
+
+git init;
+git add -A;
+git commit -m 'deploy to gh-pages';
+
+# git subtree push --prefix dist origin gh-pages;
+
+git push -f git@github.com:getlonlat/angular.git master:gh-pages;
+
+cd -
