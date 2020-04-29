@@ -6,7 +6,7 @@ echo "Deploy to gh-pages started...\n";
 set -e;
 
 # build
-yarn ng build --prod --base-href=/;
+npm run ng build --prod --base-href=/;
 
 # navigate into the build output directory
 cd dist;
