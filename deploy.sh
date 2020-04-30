@@ -11,8 +11,6 @@ npm run ng build --prod --base-href=/;
 # navigate into the build output directory
 cd dist;
 
-echo 'angular.getlonlat.top' > CNAME;
-
 git init;
 git add -A;
 git commit -m 'deploy to gh-pages';
